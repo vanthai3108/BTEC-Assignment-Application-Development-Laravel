@@ -11,7 +11,6 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Intervention\Image\ImageManagerStatic as Image; 
 
 
 class AdminUserController extends Controller
@@ -49,16 +48,13 @@ class AdminUserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        // dd($request);
-        // dd($request->file('avatar'));
-        $avatar = $request->file('avatar')->store('storage/avatars');
+
+        $request->file('avatar')->store('public/avatars');
         $filename = $request->file('avatar')->hashName();
-        $img = Image::make($request->file('avatar')->getRealPath());
-        $img->save(public_path('storage/avatars/'.$filename));
         $user = new User();
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
-        $user->avatar = $avatar;
+        $user->avatar = 'storage/avatars/'.$filename;
         $user->save();
         foreach($request->roles as $role)
         {
@@ -100,13 +96,11 @@ class AdminUserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $avatar = $request->file('avatar')->store('storage/avatars');
+        $request->file('avatar')->store('public/avatars');
         $filename = $request->file('avatar')->hashName();
-        $img = Image::make($request->file('avatar')->getRealPath());
-        $img->save(public_path('storage/avatars/'.$filename));
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
-        $user->avatar = $avatar;
+        $user->avatar = 'storage/avatars/'.$filename;
         $user->save();
         foreach($request->roles as $role)
         {
@@ -125,7 +119,7 @@ class AdminUserController extends Controller
     {
         $user->roles()->detach();
         $user->delete();
-        return redirect('admin/user');
+        return redirect()->route('admin.users.index');
     }
 
     public function blockUser(Request $request, User $user)
