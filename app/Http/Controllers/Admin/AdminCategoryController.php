@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
-use App\Models\Role;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\AppConst;
 
-class AdminRoleController extends Controller
+class AdminCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,8 @@ class AdminRoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::paginate(AppConst::DEFAULT_ADMIN_ROLE_PER_PAGE);
-        return view('admin.role.list')->with('roles', $roles);
+        $categories = Category::paginate(AppConst::DEFAULT_ADMIN_CATEGORY_PER_PAGE);
+        return view('admin.category.list')->with('categories', $categories);
     }
 
     /**
@@ -29,7 +27,7 @@ class AdminRoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -38,60 +36,53 @@ class AdminRoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRoleRequest $request)
-    {
-        $role = new Role();
-        $role->fill($request->all());
-        $role->save();
-        return redirect('/admin/role');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Role $role)
+    public function store(Request $request)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function show(Category $category)
     {
-        return view('admin.role.edit')->with('role', $role);
+        return view('admin.category.edit')->with('category', $category);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Category $category)
+    {
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(Request $request, Category $category)
     {
-        $role->fill($request->all());
-        $role->save();
-        return redirect('/admin/role');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Category $category)
     {
-        $role->users()->detach();
-        $role->delete();
-        return redirect('admin/role');
+        //
     }
 }
