@@ -27,6 +27,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'block', 'role:Admin
     Route::get('/user/block/{user}', [AdminUserController::class, 'blockUser'])->name('admin.user.block');
     Route::get('/users/unblock/{user}', [AdminUserController::class, 'unblockUser'])->name('admin.user.unblock');
     // Route::resource('/role', AdminRoleController::class)->names('admin.roles');
+    Route::resource('/topic', AdminTopicController::class)->names('admin.topics');
+    Route::resource('/category', AdminCategoryController::class)->names('admin.categories');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'block', 'role:Admin']], function(){
