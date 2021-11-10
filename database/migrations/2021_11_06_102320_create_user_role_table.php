@@ -17,8 +17,8 @@ class CreateUserRoleTable extends Migration
             $table->id();
             // $table->Integer('user_id');
             // $table->Integer('role_id');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('role_id')->constrained('roles');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('role_id')->constrained('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
