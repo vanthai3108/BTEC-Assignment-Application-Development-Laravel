@@ -38,7 +38,7 @@
                             <td class="align-middle">{{ $user->fullname }}</td>
                             <td class="align-middle">{{ $user->email }}</td>
                             <td class="text-center">
-                                <img src="../{{  $user->avatar }}" class="img-circle elevation-2" style="height: 60px;" alt="User Image">
+                                <img src="../{{  $user->avatar }}" class="img-circle elevation-2" style="height: 60px; width:60px; " alt="User Image">
                             </td>
                             @foreach ($usersData['roles'] as $role)
                                 <td class="text-center align-middle">
