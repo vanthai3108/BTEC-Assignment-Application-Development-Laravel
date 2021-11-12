@@ -14,7 +14,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Edit topic - ID: {{$topic->id}}</h3>
                       </div>
-                    <form action="{{route('admin.roles.update', $topic->id)}}" method="POST">
+                    <form action="{{route('admin.topics.update', $topic->id)}}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
@@ -25,6 +25,16 @@
                                 @if ($errors->has('name'))
                                     <div class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="topicDescription">Description:</label>
+                                <input type="text" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" 
+                                    id="topicDescription" name="description" value="{{ old('description') != null ? old('description') : $topic->description }}" placeholder="Description">
+                                @if ($errors->has('description'))
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $errors->first('description') }}</strong>
                                     </div>
                                 @endif
                             </div>

@@ -27,6 +27,16 @@
                                     </div>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label for="categoryDescription">Description:</label>
+                                <input type="text" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" 
+                                    id="categoryDescription" name="description" value="{{ old('description') }}" placeholder="Description">
+                                @if ($errors->has('description'))
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary col col-12">Save</button>

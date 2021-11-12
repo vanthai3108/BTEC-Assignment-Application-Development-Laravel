@@ -59,7 +59,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="customFile">Choose avatar</label>
+                                <label for="customFile">Choose avatar:</label>
                                 <div class="input-group {{ $errors->has('avatar') ? 'is-invalid' : '' }}">
                                     <div class="custom-file">
                                         <input type="file" ref="input" class="custom-file-input {{ $errors->has('avatar') ? 'is-invalid' : '' }}" id="customFile" name="avatar">

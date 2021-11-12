@@ -49,6 +49,14 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Role');
     }
 
+    public function topics() {
+        return $this->hasMany('App\Models\Topic');
+    }
+
+    public function courses() {
+        return $this->belongsToMany('App\Models\Course');
+    }
+
     public function adminlte_image()
     {
         return $this->avatar;

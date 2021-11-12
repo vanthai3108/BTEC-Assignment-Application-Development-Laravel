@@ -43,7 +43,7 @@ class AdminRoleController extends Controller
         $role = new Role();
         $role->fill($request->all());
         $role->save();
-        return redirect('/admin/role');
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -77,9 +77,15 @@ class AdminRoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        $role->fill($request->all());
+        if($role->name != "Admin")
+        {
+            $role->fill($request->all());
+        }
+        else {
+            $role->fill($request->except(['name']));
+        }
         $role->save();
-        return redirect('/admin/role');
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -90,8 +96,11 @@ class AdminRoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        $role->users()->detach();
-        $role->delete();
-        return redirect('admin/role');
+        if($role->name != "Admin")
+        {
+            $role->users()->detach();
+            $role->delete();
+        }
+        return redirect()->route('admin.roles.index');
     }
 }
