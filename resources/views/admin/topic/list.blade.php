@@ -18,6 +18,7 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">Name</th>
+                        <th class="text-center">Action</th>
                         <th colspan="2" class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                         <tr>
                             <td class="text-center align-middle">{{ ($topics->currentPage() - 1)  * $topics->perpage() + $loop->iteration }}</td>
                             <td class="align-middle">{{ $topic->name }}</td>
+                            <td class="align-middle">{{ $topic->description }}</td>
                             <td class="text-center align-middle"><a href="{{ route('admin.topics.edit', $topic->id) }}"><i class="fas fa-edit text-blue"></i></a></td>
                             <td class="align-middle">
                                 <form action="{{ route('admin.topics.destroy',$topic->id) }}" method="POST">

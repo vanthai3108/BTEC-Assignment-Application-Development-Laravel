@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\AppConst;
@@ -36,9 +38,12 @@ class AdminCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        $category = new Category();
+        $category->fill($request->all());
+        $category->save();
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -60,7 +65,7 @@ class AdminCategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit')->with('category', $category);
     }
 
     /**
@@ -70,9 +75,11 @@ class AdminCategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->fill($request->all());
+        $category->save();
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -83,6 +90,7 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.categories.index');
     }
 }

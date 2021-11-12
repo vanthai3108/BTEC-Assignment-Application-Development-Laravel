@@ -48,7 +48,15 @@ class AdminUserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-
+        $checkRole = false;
+        foreach(auth()->user()->roles as $userRole)
+        {
+            if($userRole->name == "Admin")
+            {
+                $checkRole = true;
+                break;
+            }
+        }
         $request->file('avatar')->store('public/avatars');
         $filename = $request->file('avatar')->hashName();
         $user = new User();
@@ -56,10 +64,26 @@ class AdminUserController extends Controller
         $user->password = Hash::make($request->password);
         $user->avatar = 'storage/avatars/'.$filename;
         $user->save();
-        foreach($request->roles as $role)
+        if (!$checkRole)
         {
-            $user->roles()->attach($role);
+            foreach($request->roles as $role)
+            {
+                $addRole = Role::find($role);
+                if($addRole->name != "Admin" && $addRole != "Training staff") 
+                {
+                    $user->roles()->attach($role);
+                }
+            }
+            
         }
+        else {
+            foreach($request->roles as $role)
+            {
+                $user->roles()->attach($role);
+            }
+
+        }
+        
         return redirect()->route('admin.users.index');
     }
 
@@ -96,15 +120,50 @@ class AdminUserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        $checkRole = false;
+        foreach(auth()->user()->roles as $userRole)
+        {
+            if($userRole->name == "Admin")
+            {
+                $checkRole = true;
+                break;
+            }
+        }
+        if (!$checkRole)
+        {
+            foreach($user->roles as $role)
+            {
+                if($role->name == "Admin" || $role == "Training staff")
+                {
+                    abort(401);
+                }
+            }
+            
+        }
         $request->file('avatar')->store('public/avatars');
         $filename = $request->file('avatar')->hashName();
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
         $user->avatar = 'storage/avatars/'.$filename;
         $user->save();
-        foreach($request->roles as $role)
+        if (!$checkRole)
         {
-            $user->roles()->attach($role);
+            foreach($request->roles as $role)
+            {
+                $addRole = $addRole = Role::find($role);
+                if($addRole->name != "Admin" && $addRole != "Training staff") 
+                {
+                    $user->roles()->attach($role);
+                }
+            }
+            
+        }
+        else {
+            foreach($request->roles as $role)
+            {
+                $user->roles()->attach($role);
+            }
+
         }
         return redirect()->route('admin.users.index');
     }
@@ -122,14 +181,14 @@ class AdminUserController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-    public function blockUser(Request $request, User $user)
+    public function blockUser(User $user)
     {
         $user->blocked = true;
         $user->save();
         return redirect()->route('admin.users.index');
     }
 
-    public function unblockUser(Request $request, User $user)
+    public function unblockUser(User $user)
     {
         $user->blocked = false;
         $user->save();

@@ -18,6 +18,7 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">Name</th>
+                        <th class="text-center">Description</th>
                         <th colspan="2" class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                         <tr>
                             <td class="text-center align-middle">{{ ($categories->currentPage() - 1)  * $categories->perpage() + $loop->iteration }}</td>
                             <td class="align-middle">{{ $category->name }}</td>
+                            <td class="align-middle">{{ $category->description }}</td>
                             <td class="text-center align-middle"><a href="{{ route('admin.categories.edit', $category->id) }}"><i class="fas fa-edit text-blue"></i></a></td>
                             <td class="align-middle">
                                 <form action="{{ route('admin.categories.destroy',$category->id) }}" method="POST">
