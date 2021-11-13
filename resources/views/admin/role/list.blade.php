@@ -18,6 +18,7 @@
                     <tr>
                         <th class="text-center">#</th>
                         <th class="text-center">Name</th>
+                        <th class="text-center">Description</th>
                         <th colspan="2" class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                         <tr>
                             <td class="text-center align-middle">{{ ($roles->currentPage() - 1)  * $roles->perpage() + $loop->iteration }}</td>
                             <td class="align-middle">{{ $role->name }}</td>
+                            <td class="align-middle">{{ $role->description }}</td>
                             <td class="text-center align-middle"><a href="{{ route('admin.roles.edit', $role->id) }}"><i class="fas fa-edit text-blue"></i></a></td>
                             <td class="align-middle">
                                 <form action="{{ route('admin.roles.destroy',$role->id) }}" method="POST">

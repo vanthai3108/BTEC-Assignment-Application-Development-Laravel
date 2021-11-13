@@ -15,6 +15,14 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description');
+            $table->string('image');
+            $table->integer('numberOfSessions');
+            $table->integer('shift');
+            $table->dateTime('startDate');
+            $table->dateTime('endDate');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->onDeletecascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTopicRequest;
+use App\Http\Requests\UpdateTopicRequest;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Models\AppConst;
@@ -36,9 +38,12 @@ class AdminTopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTopicRequest $request)
     {
-        //
+        $topic = new Topic();
+        $topic->fill($request->all());
+        $topic->save();
+        return redirect()->route('admin.topics.index');
     }
 
     /**
@@ -70,9 +75,11 @@ class AdminTopicController extends Controller
      * @param  \App\Models\Topic  $topic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topic $topic)
+    public function update(UpdateTopicRequest $request, Topic $topic)
     {
-        //
+        $topic->fill($request->all());
+        $topic->save();
+        return redirect()->route('admin.topics.index');
     }
 
     /**
@@ -83,6 +90,7 @@ class AdminTopicController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        //
+        $topic->delete();
+        return redirect()->route('admin.topics.index');
     }
 }

@@ -28,6 +28,16 @@
                                     </div>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label for="roleDescription">Description:</label>
+                                <input type="text" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" 
+                                    id="roleDescription" name="description" value="{{ old('description') != null ? old('description') : $role->description }}" placeholder="Description">
+                                @if ($errors->has('description'))
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary col col-12">Save</button>
