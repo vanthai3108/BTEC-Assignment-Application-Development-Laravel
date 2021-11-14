@@ -16,7 +16,7 @@ class AdminCourseController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
     /**

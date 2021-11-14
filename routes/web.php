@@ -17,10 +17,7 @@ use App\Http\Controllers\Admin\AdminTopicController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['block','auth']);
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'block', 'role:Admin,Training staff']], function(){
@@ -37,4 +34,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'block', 'role:Admin
     Route::resource('/role', AdminRoleController::class)->names('admin.roles');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('block');
+
