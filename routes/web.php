@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminRoleController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTopicController;
+use App\Http\Controllers\Admin\AdminCourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'block', 'role:Admin
     // Route::resource('/role', AdminRoleController::class)->names('admin.roles');
     Route::resource('/topic', AdminTopicController::class)->names('admin.topics');
     Route::resource('/category', AdminCategoryController::class)->names('admin.categories');
+    Route::resource('/course', AdminCourseController::class)->names('admin.courses');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'block', 'role:Admin']], function(){

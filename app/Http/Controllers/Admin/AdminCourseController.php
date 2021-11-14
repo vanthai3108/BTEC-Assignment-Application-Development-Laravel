@@ -16,7 +16,8 @@ class AdminCourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::with('category')->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
+        return view('admin.course.list')->with('courses', $courses);
     }
 
     /**
@@ -26,7 +27,7 @@ class AdminCourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.course.create');
     }
 
     /**
