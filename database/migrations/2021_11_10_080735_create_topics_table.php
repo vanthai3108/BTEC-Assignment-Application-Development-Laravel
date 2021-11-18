@@ -18,7 +18,7 @@ class CreateTopicsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
-            $table->foreignId('course_id')->nullable()->constrained('courses')->onDeletecascadeOnUpdate()->nullOnDelete();
+            $table->foreignId('course_id')->nullable()->constrained('courses')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }

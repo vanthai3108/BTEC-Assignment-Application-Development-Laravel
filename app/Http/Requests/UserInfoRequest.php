@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class StoreTopicRequest extends FormRequest
+class UserInfoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class StoreTopicRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -24,10 +25,8 @@ class StoreTopicRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required','unique:topics,name'],
-            'description' => ['required'],
-            'course_id' => ['numeric'],
-            'user_id' => ['numeric'],
+            'email' => [ 'string', 'email', 'max:255', 'unique:users,email,'.$this->user->id],
+            'avatar' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
         ];
     }
 }

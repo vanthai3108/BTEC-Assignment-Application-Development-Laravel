@@ -17,14 +17,14 @@
                 <thead>
                     <tr>
                         <th class="text-center align-middle">#</th>
-                        <th  class="text-center align-middle">Name</th>
-                        <th  class="text-center align-middle">Description</th>
-                        <th  class="text-center align-middle">Image</th>
-                        <th  class="text-center align-middle">Number of sessions</th>
-                        <th  class="text-center align-middle">Shift</th>
-                        <th  class="text-center align-middle">Start date</th>
-                        <th  class="text-center align-middle">End date</th>
-                        <th  class="text-center align-middle">Category</th>
+                        <th class="text-center align-middle">Name</th>
+                        <th class="text-center align-middle">Description</th>
+                        <th class="text-center align-middle">Image</th>
+                        <th class="text-center "><p class="align-middle mb-0">Number of sessions</p></th>
+                        <th class="text-center align-middle">Shift</th>
+                        <th class="text-center align-middle">Start date</th>
+                        <th class="text-center align-middle">End date</th>
+                        <th class="text-center align-middle">Category</th>
                         
                         <th colspan="3" class="text-center align-middle">Actions</th>
                     </tr>
@@ -34,14 +34,22 @@
                     @foreach($courses as $key=>$course)
                         <tr>
                             <td class="text-center align-middle">{{ ($courses->currentPage() - 1)  * $courses->perpage() + $loop->iteration }}</td>
-                            <td class="align-middle">{{ $course->name }}</td>
+                            <td class="align-middle"><a href="{{ route('admin.courses.show', $course->id) }}">{{ $course->name }}</a></td>
                             <td class="align-middle">{{ $course->description }}</td>
-                            <td class="align-middle">{{ $course->image }}</td>
-                            <td class="align-middle">{{ $course->numberOfSessions }}</td>
-                            <td class="align-middle">{{ $course->shift}}</td>
-                            <td class="align-middle">{{ $course->startDate }}</td>
-                            <td class="align-middle">{{ $course->endDate }}</td>
-                            <td class="align-middle">{{ $course->category->name}}</td>
+                            <td class="align-middle text-center">
+                                <img src="../{{  $course->image }}" class="img-fluid pad" style="width:150px; height:80px;" alt="Course Image">
+                            </td>
+                            <td class="text-center align-middle">{{ $course->numberOfSessions }}</td>
+                            <td class="text-center align-middle">{{ $course->shift}}</td>
+                            <td class="text-center align-middle">{{ $course->startDate }}</td>
+                            <td class="text-center align-middle">{{ $course->endDate }}</td>
+                            <td class="align-middle">
+                                @if($course->category != null) 
+                                {{$course->category->name}}
+                            @else
+                                <span class="text-red">Empty</span>
+                            @endif 
+                            </td>
                            
                          
 

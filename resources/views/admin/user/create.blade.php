@@ -37,7 +37,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="fullname">Full name:</label>
                                 <input type="text" class="form-control {{ $errors->has('fullname') ? 'is-invalid' : '' }}" 
                                     id="fullname" name="fullname" value="{{ old('fullname') }}" placeholder="Fullname">
@@ -70,7 +70,7 @@
                                             <strong>{{ $errors->first('avatar') }}</strong>
                                         </div>
                                 @endif
-                            </div>
+                            </div> --}}
                             
                             <div class="form-group">
                                 <label for="roles">Roles:</label>
@@ -83,7 +83,6 @@
                                             <label class="custom-control-label" for="role_{{ $role->id }}">{{ $role->name}}</label>
                                         </div>
                                     @endforeach
-
                                 </div>
                                 @if($errors->has('roles'))
                                         <div class="invalid-feedback">

@@ -9,7 +9,7 @@ class Course extends Model
 {
     use HasFactory;
     protected $fillable = [ 'name', 'description', 'image', 'numberOfSessions', 'shift', 'startDate', 'endDate','category_id' ];
-    public function topic() {
+    public function topics() {
         return $this->hasMany('App\Models\Topic');
     }
     public function category() {

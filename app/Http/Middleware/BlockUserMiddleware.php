@@ -17,7 +17,7 @@ class BlockUserMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (auth()->user()->blocked){
-            redirect('/login');
+            abort(401);
         }
         return $next($request);
     }

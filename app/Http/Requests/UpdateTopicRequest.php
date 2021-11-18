@@ -25,7 +25,9 @@ class UpdateTopicRequest extends FormRequest
     {
         return [
             'name' => ['required','unique:topics,name,'.$this->topic->id],
-            'description' => ['required']
+            'description' => ['required'],
+            'course_id' => ['numeric'],
+            'user_id' => ['numeric'],
         ];
     }
 }
