@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\AdminRoleController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTopicController;
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +20,19 @@ use App\Http\Controllers\Admin\AdminCourseController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['block','auth']);
-Auth::routes();
+Auth::routes(['register' => false]);
+
+Route::group(['prefix' => '', 'middleware' => ['auth', 'block']], function(){
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/profile', ProfileController::class)->names('profiles');
+    Route::resource('/user', UserController::class)->names('users');
+});
+
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'block', 'role:Admin,Training staff']], function(){
-    Route::get('/home', [App\Http\Controllers\Admin\AdminHomeController::class, 'index'])->name('admin');
+    Route::get('/home', [App\Http\Controllers\Admin\AdminHomeController::class, 'index'])->name('admin.home');
+    Route::get('/settings', [App\Http\Controllers\Admin\AdminHomeController::class, 'setting'])->name('admin.settings');
     Route::resource('/user', AdminUserController::class)->names('admin.users');
     Route::get('/user/block/{user}', [AdminUserController::class, 'blockUser'])->name('admin.user.block');
     Route::get('/users/unblock/{user}', [AdminUserController::class, 'unblockUser'])->name('admin.user.unblock');
@@ -30,6 +40,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'block', 'role:Admin
     Route::resource('/topic', AdminTopicController::class)->names('admin.topics');
     Route::resource('/category', AdminCategoryController::class)->names('admin.categories');
     Route::resource('/course', AdminCourseController::class)->names('admin.courses');
+    Route::get('/course/{course}/delete/{user}', [AdminCourseController::class, 'deleteTrainee'])->name('admin.courses.deleteTrainee');
+    Route::get('/course/{course}/add', [AdminCourseController::class, 'addTraineeView'])->name('admin.courses.addTraineeView');
+    Route::post('/course/{course}/addHandle', [AdminCourseController::class, 'addTrainee'])->name('admin.courses.addTrainee');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'block', 'role:Admin']], function(){

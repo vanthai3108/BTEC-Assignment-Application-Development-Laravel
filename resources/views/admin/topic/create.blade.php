@@ -37,6 +37,46 @@
                                     </div>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label for="topicCourse">Course:</label>
+                                <select class="form-control" id="topicCourse" name="course_id">
+                                    <option value="0">null</option>
+                                    @foreach ($data['courses'] as $course)
+                                        <option value="{{ $course->id }}"
+                                            @if (old('course_id') == $course->id)
+                                                selected
+                                            @endif
+                                        >
+                                            {{ $course->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('course_id'))
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $errors->first('course_id') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="topicTrainer">Trainer:</label>
+                                <select class="form-control" id="topicTrainer" name="user_id">
+                                    <option value="0">null</option>
+                                    @foreach ($data['users'] as $user)
+                                        <option value="{{ $user->id }}"
+                                            @if (old('user_id') == $user->id)
+                                                selected
+                                            @endif
+                                        >
+                                            {{ $user->fullname }} - {{ $user->username }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('user_id'))
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $errors->first('user_id') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary col col-12">Save</button>

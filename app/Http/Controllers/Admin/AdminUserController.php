@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Models\AppConst;
+use App\Models\Profile;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,11 +21,86 @@ class AdminUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['users'] = User::where('id', '!=', auth()->user()->id)
+        $check = false;
+        foreach(auth()->user()->roles as $userRole)
+        {
+            if($userRole->name == "Admin")
+            {
+                $check = true;
+                break;
+            }
+        }
+        $data['key'] = null;
+        $data['type'] = null;
+        if($check){
+            if($request->key && $request->type)
+            {
+                $data['key'] = $request->key;
+                $data['type'] = $request->type;
+                if($data['type'] == "username" ||$data['type'] == "fullname" ||$data['type'] == "email")
+                {
+                    $data['users'] = User::where('id', '!=', auth()->user()->id)
+                                ->where($data['type'], 'LIKE', "%{$data['key']}%")
                                 ->with('roles')
                                 ->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
+                }
+                else
+                {
+                    $data['users'] = User::where('id', '!=', auth()->user()->id)
+                                ->whereHas('profiles', function($q) use($data) {
+                                    $q->where('key', 'LIKE', "%{$data['type']}%")
+                                    ->where('value', 'LIKE', "%{$data['key']}%");
+                                })->with('roles')
+                                ->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
+                }
+
+            }
+            else {
+                $data['users'] = User::where('id', '!=', auth()->user()->id)
+                                ->with('roles')
+                                ->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
+            }
+            
+        }
+        else {
+            if($request->key && $request->type)
+            {
+                $data['key'] = $request->key;
+                $data['type'] = $request->type;
+                if($data['type'] == "username" ||$data['type'] == "fullname" ||$data['type'] == "email")
+                {
+                    $data['users'] = User::where('id', '!=', auth()->user()->id)
+                                ->whereHas('roles', function($q) {
+                                    $q->whereIn('name', ['Trainer','Trainee']);
+                                })
+                                ->where($data['type'], 'LIKE', "%{$data['key']}%")
+                                ->with('roles')
+                                ->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
+                }
+                else
+                {
+                    $data['users'] = User::where('id', '!=', auth()->user()->id)
+                                ->whereHas('roles', function($q) {
+                                    $q->whereIn('name', ['Trainer','Trainee']);
+                                })
+                                ->whereHas('profiles', function($q) use($data) {
+                                    $q->where('key', 'LIKE', "%{$data['type']}%")
+                                    ->where('value', 'LIKE', "%{$data['key']}%");
+                                })->with('roles')
+                                ->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
+                }
+
+            }
+            else {
+                $data['users'] = User::where('id', '!=', auth()->user()->id)
+                                    ->whereHas('roles', function($q) {
+                                        $q->whereIn('name', ['Trainer','Trainee']);
+                                    })->with('roles')->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
+            }
+        }
+        $data['options'] = Profile::distinct()->get(['key']);
         $data['roles'] = Role::all();
         return view('admin.user.list')->with('usersData', $data);
     }
@@ -57,12 +133,13 @@ class AdminUserController extends Controller
                 break;
             }
         }
-        $request->file('avatar')->store('public/avatars');
-        $filename = $request->file('avatar')->hashName();
+        // $request->file('avatar')->store('public/avatars');
+        // $filename = $request->file('avatar')->hashName();
         $user = new User();
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
-        $user->avatar = 'storage/avatars/'.$filename;
+        $user->avatar = 'storage/avatars/avatar-default.png';
+        // $user->avatar = 'storage/avatars/'.$filename;
         $user->save();
         if (!$checkRole)
         {
@@ -95,7 +172,7 @@ class AdminUserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -140,17 +217,18 @@ class AdminUserController extends Controller
             }
             
         }
-        $request->file('avatar')->store('public/avatars');
-        $filename = $request->file('avatar')->hashName();
+        // $request->file('avatar')->store('public/avatars');
+        // $filename = $request->file('avatar')->hashName();
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
-        $user->avatar = 'storage/avatars/'.$filename;
+        $user->avatar = 'storage/avatars/avatar-default.png';
+        // $user->avatar = 'storage/avatars/'.$filename;
         $user->save();
         if (!$checkRole)
         {
             foreach($request->roles as $role)
             {
-                $addRole = $addRole = Role::find($role);
+                $addRole = Role::find($role);
                 if($addRole->name != "Admin" && $addRole != "Training staff") 
                 {
                     $user->roles()->attach($role);

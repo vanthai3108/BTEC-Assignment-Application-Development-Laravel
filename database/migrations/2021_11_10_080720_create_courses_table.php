@@ -20,9 +20,9 @@ class CreateCoursesTable extends Migration
             $table->string('image');
             $table->integer('numberOfSessions');
             $table->integer('shift');
-            $table->dateTime('startDate');
-            $table->dateTime('endDate');
-            $table->foreignId('category_id')->nullable()->constrained('categories')->onDeletecascadeOnUpdate()->nullOnDelete();
+            $table->date('startDate');
+            $table->date('endDate');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }

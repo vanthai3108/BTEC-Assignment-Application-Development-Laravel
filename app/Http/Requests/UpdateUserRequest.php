@@ -25,10 +25,9 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'username' => ['required', 'string', 'max:30', 'unique:users,username,'.$this->user->id],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$this->user->id],
+            'email' => [ 'string', 'email', 'max:255', 'unique:users,email,'.$this->user->id],
             'password' => ['required', 'string', 'min:8'],
-            'fullname' => ['required'],
-            'avatar' => ['required','image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
+            'avatar' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
             'roles' => ['required'],
         ];
     }

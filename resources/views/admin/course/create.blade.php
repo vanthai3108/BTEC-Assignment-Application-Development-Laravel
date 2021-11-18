@@ -59,34 +59,42 @@
                             </div>
                             <div class="form-group">
                                 <label>Start Date:</label>
-                                  <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                      <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate">
-                                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="form-group">
-                                <label>End Date:</label>
-                                  <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                      <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate">
-                                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="form-group" data-select2-id="67">
-                                <label>Category:</label>
-                                <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                  <option selected="selected" data-select2-id="3">Alabama</option>
-                                  <option data-select2-id="70">Alaska</option>
-                                  <option data-select2-id="71">California</option>
-                                  <option data-select2-id="72">Delaware</option>
-                                  <option data-select2-id="73">Tennessee</option>
-                                  <option data-select2-id="74">Texas</option>
-                                  <option data-select2-id="75">Washington</option>
-                                </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-y7wi-container"><span class="select2-selection__rendered" id="select2-y7wi-container" role="textbox" aria-readonly="true" title="Alaska">Alaska</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                              </div>
+                                <input name="startDate" value="{{ old('startDate') }}" class="date form-control {{ $errors->has('startDate') ? 'is-invalid' : '' }}" type="date">
+                                @if ($errors->has('startDate'))
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $errors->first('startDate') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label>Start Date:</label>
+                                <input name="endDate" value="{{ old('endDate') }}" class="date form-control {{ $errors->has('endDate') ? 'is-invalid' : '' }}" type="date">
+                                @if ($errors->has('endDate'))
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $errors->first('endDate') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="courseCategogy">Category:</label>
+                                <select class="form-control" id="courseCategogy" name="category_id">
+                                    <option value="0">null</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}"
+                                            @if (old('category_id') == $category->id)
+                                                selected
+                                            @endif
+                                        >
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('course_id'))
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $errors->first('course_id') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
                             <div class="form-group">
                                 <label for="customFile">Choose image:</label>
                                 <div class="input-group {{ $errors->has('image') ? 'is-invalid' : '' }}">

@@ -10,6 +10,24 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title"><a href="{{ route('admin.users.create') }}" class="text-green"><i class="fas fa-plus text-green"></i> Create new user</a></h3>
+            <form class="form-inline d-flex justify-content-end" action="{{route('admin.users.index')}}" method="GET">
+                <input class="form-control mr-sm-2" name="key" type="search" 
+                        placeholder="Search" aria-label="Search" required
+                        @if ($usersData['key'])
+                            value="{{$usersData['key']}}"
+                        @endif
+                >
+                <select class="form-control mr-sm-2" name="type">
+                    <option value="username" @if ("username" == $usersData['type']) selected @endif>Username</option>
+                    <option value="fullname" @if ("fullname" == $usersData['type']) selected @endif>Full name</option>
+                    <option value="email" @if ("email" == $usersData['type']) selected @endif>Email</option>
+                    @foreach ($usersData['options'] as $option)
+                        <option value="{{$option->key}}" @if ($option->key == $usersData['type']) selected @endif>{{$option->key}}</option>
+                    @endforeach
+                    
+                </select>
+                <button class="btn btn-success " type="submit">Search</button>
+            </form>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -21,6 +39,7 @@
                         <th rowspan="2" class="text-center align-middle">Fullname</th>
                         <th rowspan="2" class="text-center align-middle">Email</th>
                         <th rowspan="2" class="text-center align-middle">Avatar</th>
+                        <th rowspan="2" class="text-center align-middle">Info</th>
                         <th colspan="{{count($usersData['roles'])}}" class="text-center align-middle">Roles</th>
                         <th colspan="3" rowspan="2" class="text-center align-middle">Actions</th>
                     </tr>
@@ -38,7 +57,14 @@
                             <td class="align-middle">{{ $user->fullname }}</td>
                             <td class="align-middle">{{ $user->email }}</td>
                             <td class="text-center">
-                                <img src="../{{  $user->avatar }}" class="img-circle elevation-2" style="height: 60px; width:60px; " alt="User Image">
+                                @if($user->avatar)
+                                    <img src="../{{  $user->avatar }}" class="img-circle elevation-2" style="height: 60px; width:60px; " alt="User Image">
+                                @endif
+                            </td>
+                            <td class="align-middle">
+                                @foreach ($user->profiles as $profile)
+                                    <span>{{$profile->key}}: {{$profile->value}}, </span>
+                                @endforeach
                             </td>
                             @foreach ($usersData['roles'] as $role)
                                 <td class="text-center align-middle">

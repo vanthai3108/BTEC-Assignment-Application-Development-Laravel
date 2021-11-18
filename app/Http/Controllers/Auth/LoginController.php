@@ -71,7 +71,7 @@ class LoginController extends Controller
             return redirect('/admin/home');
         }
         else {
-            return redirect('/home');
+            return redirect('/');
         }
     }
 }

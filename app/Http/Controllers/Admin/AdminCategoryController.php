@@ -54,7 +54,7 @@ class AdminCategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('admin.category.edit')->with('category', $category);
+        abort(404);
     }
 
     /**

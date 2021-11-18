@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\AppConst;
+use App\Models\Category;
+use App\Models\User;
 
 class AdminCourseController extends Controller
 {
@@ -27,7 +31,8 @@ class AdminCourseController extends Controller
      */
     public function create()
     {
-        return view('admin.course.create');
+        $categories = Category::all();
+        return view('admin.course.create')->with('categories', $categories);
     }
 
     /**
@@ -36,9 +41,18 @@ class AdminCourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        //
+        $request->file('image')->store('public/courses');
+        $filename = $request->file('image')->hashName();
+        $course = new Course();
+        $course->fill($request->all());
+        if ($request->category_id == 0) {
+            $course->category_id = null;
+        }
+        $course->image = 'storage/courses/'.$filename;
+        $course->save();
+        return redirect()->route('admin.courses.index');
     }
 
     /**
@@ -49,7 +63,7 @@ class AdminCourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        return view('admin.course.show')->with('course', $course);
     }
 
     /**
@@ -70,7 +84,7 @@ class AdminCourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(UpdateCourseRequest $request, Course $course)
     {
         //
     }
@@ -84,5 +98,30 @@ class AdminCourseController extends Controller
     public function destroy(Course $course)
     {
         //
+    }
+
+    public function deleteTrainee(Course $course, $user)
+    {
+        $course->users()->detach($user);
+        return redirect()->route('admin.courses.show',['course' => $course->id]);
+    }
+
+    public function addTraineeView(Course $course)
+    {
+        $data['users'] = User::whereHas('roles', function($q) {
+            $q->whereIn('name', ['Trainee']);
+        })->get();
+        $data['course'] = $course;
+        return view('admin.course.addTrainee')->with('data', $data);
+    }
+
+    public function addTrainee(Request $request, Course $course)
+    {
+        $check = $course->users->contains($request->user);
+        if(!$check)
+        {
+            $course->users()->attach($request->user);
+        }
+        return redirect()->route('admin.courses.addTraineeView', $course);
     }
 }

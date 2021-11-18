@@ -32,12 +32,16 @@
                             <td class="align-middle">{{ $topic->description }}</td>
                             <td class="align-middle">
                                 @if($topic->user != null) 
-                                    {{$topic->user->fullname}}
+                                    {{$topic->user->username}}
+                                @else
+                                    <span class="text-red">Empty</span>
                                 @endif 
                             </td>
                             <td class="align-middle">
                                 @if($topic->course != null) 
                                     {{$topic->course->name}}
+                                @else
+                                    <span class="text-red">Empty</span>
                                 @endif 
                             </td>
                             <td class="text-center align-middle"><a href="{{ route('admin.topics.edit', $topic->id) }}"><i class="fas fa-edit text-blue"></i></a></td>

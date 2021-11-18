@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>BT </b>School',
-    'logo_img' => 'vendor/adminlte/dist/img/logo1.svg',
+    'logo_img' => 'storage/logo1.svg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',

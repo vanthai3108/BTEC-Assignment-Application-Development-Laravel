@@ -24,7 +24,14 @@ class UpdateCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'unique:courses,name,'.$this->course->id], 
+            'description' => ['required'], 
+            'image' => ['required','image','mimes:jpeg,png,jpg,gif,svg','max:2048'], 
+            'numberOfSessions' => ['required', 'numeric'], 
+            'shift' => ['required', 'numeric'], 
+            'startDate' => ['required', 'date'], 
+            'endDate' => ['required', 'date'],
+            'category_id' => ['numeric'],
         ];
     }
 }

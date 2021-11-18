@@ -8,6 +8,8 @@ use App\Http\Requests\UpdateTopicRequest;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use App\Models\AppConst;
+use App\Models\Course;
+use App\Models\User;
 
 class AdminTopicController extends Controller
 {
@@ -29,7 +31,11 @@ class AdminTopicController extends Controller
      */
     public function create()
     {
-        return view('admin.topic.create');
+        $data['users'] = User::whereHas('roles', function($q) {
+            $q->whereIn('name', ['Trainer']);
+        })->get();
+        $data['courses'] = Course::all();
+        return view('admin.topic.create')->with('data', $data);
     }
 
     /**
@@ -42,6 +48,12 @@ class AdminTopicController extends Controller
     {
         $topic = new Topic();
         $topic->fill($request->all());
+        if ($request->course_id == 0) {
+            $topic->course_id = null;
+        }
+        if ($request->user_id == 0) {
+            $topic->user_id = null;
+        }
         $topic->save();
         return redirect()->route('admin.topics.index');
     }
@@ -54,7 +66,7 @@ class AdminTopicController extends Controller
      */
     public function show(Topic $topic)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -65,7 +77,12 @@ class AdminTopicController extends Controller
      */
     public function edit(Topic $topic)
     {
-        return view('admin.topic.edit')->with('topic', $topic);
+        $data['users'] = User::whereHas('roles', function($q) {
+            $q->whereIn('name', ['Trainer']);
+        })->get();
+        $data['courses'] = Course::all();
+        $data['topic'] = $topic;
+        return view('admin.topic.edit')->with('data', $data);
     }
 
     /**
@@ -78,6 +95,12 @@ class AdminTopicController extends Controller
     public function update(UpdateTopicRequest $request, Topic $topic)
     {
         $topic->fill($request->all());
+        if ($request->course_id == 0) {
+            $topic->course_id = null;
+        }
+        if ($request->user_id == 0) {
+            $topic->user_id = null;
+        }
         $topic->save();
         return redirect()->route('admin.topics.index');
     }
