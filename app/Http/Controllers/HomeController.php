@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AppConst;
+use App\Models\Category;
+use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +25,32 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $data['categories'] = Category::all();
+        $data['now_category'] = null;
+        $data['my_courses'] = Course::where('users', '=', Auth::user()->id);
+        if ($request->category)
+        {
+            $data['now_category'] = $request->category;
+            $data['courses'] = Course::where('category_id', '=', $request->category)
+                                        ->paginate(AppConst::DEFAULT_HOME_COURSE_PER_PAGE);
+        }
+        else
+        {
+            $data['courses'] = Course::paginate(AppConst::DEFAULT_HOME_COURSE_PER_PAGE);;
+        }
+        return view('home')->with('data', $data); 
+    }
+
+    public function joinCourse(Request $request)
+    {
+        
+        if(!Auth::user()->courses->contains($request->course))
+        {
+            Auth::user()->courses()->attach($request->course);
+        }
+        return redirect()->route("home");
+        
     }
 }

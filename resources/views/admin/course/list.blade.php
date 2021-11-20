@@ -37,7 +37,7 @@
                             <td class="align-middle"><a href="{{ route('admin.courses.show', $course->id) }}">{{ $course->name }}</a></td>
                             <td class="align-middle">{{ $course->description }}</td>
                             <td class="align-middle text-center">
-                                <img src="../{{  $course->image }}" class="img-fluid pad" style="width:150px; height:80px;" alt="Course Image">
+                                <img src="{{config('app.url')}}/../{{  $course->image }}" class="img-fluid pad" style="width:150px; height:80px;" alt="Course Image">
                             </td>
                             <td class="text-center align-middle">{{ $course->numberOfSessions }}</td>
                             <td class="text-center align-middle">{{ $course->shift}}</td>
