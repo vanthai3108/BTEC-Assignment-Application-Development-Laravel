@@ -58,7 +58,7 @@
                             <td class="align-middle">{{ $user->email }}</td>
                             <td class="text-center">
                                 @if($user->avatar)
-                                    <img src="../{{  $user->avatar }}" class="img-circle elevation-2" style="height: 60px; width:60px; " alt="User Image">
+                                    <img src="{{config('app.url')}}/../{{  $user->avatar }}" class="img-circle elevation-2" style="height: 60px; width:60px; " alt="User Image">
                                 @endif
                             </td>
                             <td class="align-middle">
