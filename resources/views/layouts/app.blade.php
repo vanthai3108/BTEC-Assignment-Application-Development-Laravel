@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="min-height: 100%">
         <nav class="navbar navbar-expand-md navbar-light shadow-sm p-1" style="background-color: #fd7522;">
             <div class="container">
                 <a class="navbar-brand p-0" href="{{ url('/') }}">
@@ -42,7 +42,7 @@
                             <a class="nav-link" href="{{ url('/') }}" style="font-size:16px; color:white;"><i class="fas fa-home" ></i> Home  </a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="#" style="font-size:16px; color:white;"><i class="fas fa-tachometer-alt " ></i> My Course </a>
+                            <a class="nav-link" href="{{ route("myCourses.index")}}" style="font-size:16px; color:white;"><i class="fas fa-tachometer-alt " ></i> My Course </a>
                         </li>
                         
                     </ul>
@@ -104,6 +104,12 @@
         <main class="py-4">
             @yield('content')
         </main>
+        {{-- <div class="container-fluid pt-2 fixed-bottom" style="background-color: #fd7522; " >
+            <div class="row text-center">
+                <h6 class="col">© 2021 Application Development. Copyright by BHAF-2005-2.2 - Group 3</h6>
+            </div>
+        </div> --}}
+        
     </div>
 </body>
 </html>

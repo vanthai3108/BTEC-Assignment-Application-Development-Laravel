@@ -49,7 +49,7 @@ class CourseSeeder extends Seeder
         $course->users()->attach([9,11, 13]);
         $course = Course::create([
             'name' => 'Business Intelligence',
-            'description' => 'This is Business intelligence, analysis data course', 
+            'description' => 'This is Business intelligence, data course', 
             'image' => 'storage/courses/course4.png', 
             'numberOfSessions' => 15, 
             'shift' => 3, 

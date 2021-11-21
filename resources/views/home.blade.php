@@ -12,16 +12,20 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active" style="height:60vmin">
-                    <img class="d-block w-100" style="height:60vmin" src="https://www.tacthub.in/user-panel/img/subject_thumb/data-science-course-840x450.jpg" alt="First slide">
+                <div class="carousel-item active" style="height:42vmin">
+                    <img class="d-block w-100" style="height:42vmin" src="https://4zy7s42hws72i51dv3513vnm-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/twitter-7.jpg" alt="First slide">
                 </div>
-                <div class="carousel-item" style="height:60vmin">
-                    <img class="d-block w-100" style="height:60vmin" src="https://miro.medium.com/max/1024/1*p4JfpbZRxDu4GdI0KuRUyQ.jpeg" alt="Second slide">
+                <div class="carousel-item" style="height:42vmin">
+                    <img class="d-block w-100" style="height:42vmin" src="https://whatis.techtarget.com/visuals/IoTAgenda/business_of_iot/iotagenda_article_003.jpg" alt="Second slide">
                 </div>
-                <div class="carousel-item" style="height:60vmin">
-                    <img class="d-block w-100" style="height:60vmin" src="https://www.whizlabs.com/blog/wp-content/uploads/2019/01/best-digital-marketing-courses.png" alt="Third slide">
+                <div class="carousel-item" style="height:42vmin">
+                    <img class="d-block w-100" style="height:42vmin" src="https://www.sergilehkyi.com/wp-content/uploads/2018/05/machine-learning-in-fin-services-potential-applications.jpg" alt="Third slide">
+                </div>
+                <div class="carousel-item" style="height:42vmin">
+                    <img class="d-block w-100" style="height:42vmin" src="https://highskyit.com/wp-content/uploads/2019/05/cloud_banner_image.jpg" alt="Fourth slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -52,10 +56,10 @@
                                 <div class="pt-2 text-center">
                                     <h5 class="card-title mb-1">{{ $course->name }}</h5>
                                     <p class="card-text mb-1">{{ $course->description}}</p>
-                                    @if ($course->users->contains(Auth::user()->id))
-                                        <a href="{{ route('home')}}" class="btn btn-primary mb-2 btn-block">View course</a>
+                                    @if ($course->users->contains(Auth::user()->id) || $course->topics->contains('user_id', '=', Auth::user()->id))
+                                        <a href="{{ route("myCourses.index")}}" class="btn btn-primary mb-2 btn-block">View course</a>
                                     @else
-                                        <a href="{{ route('home.joinCourse', 'course='.$course->id)}}" class="btn btn-primary mb-2 btn-block">Join course</a>
+                                        <a href="{{ route('myCourses.joinCourse', $course->id) }}" class="btn btn-primary mb-2 btn-block">Join course</a>
                                     @endif
                                 </div>
                             </div>

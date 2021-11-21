@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Edit info</h3>
                   </div>
-                <form action="{{route('profiles.update', Auth::user()->id)}}" method="POST">
+                <form action="{{route('profiles.update', $profile->id)}}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="card-body">

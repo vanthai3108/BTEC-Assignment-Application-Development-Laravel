@@ -32,20 +32,20 @@
                     </div>
                     <ul class="list-group list-group-unbordered mb-3">
                         @foreach ($data['profiles'] as $profile)
-                                    <form action="{{ route('profiles.destroy',$profile->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <li class="list-group-item">
-                                            <b>{{$profile->key}}: </b>{{$profile->value}}
-                                            <button type="submit" class="close">×</button>
-                                            <a class="float-right mr-3" href="{{ route('profiles.edit', $profile->id)}}"><i class="fas fa-pen"></i></a>
-                                        </li>
-                                    </form>
+                            <form action="{{ route('profiles.destroy',$profile->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <li class="list-group-item">
+                                    <b>{{$profile->key}}: </b>{{$profile->value}}
+                                    <button type="submit" class="close">×</button>
+                                    <a class="float-right mr-3" href="{{ route('profiles.edit', $profile->id)}}"><i class="fas fa-pen"></i></a>
+                                </li>
+                            </form>
                         @endforeach
                     </ul>
                     <a href="{{ route('profiles.create')}}" class="btn btn-primary btn-block"><b>Add new</b></a>
                     @if(!$data['topics']->isEmpty())
-                    <h4 class="mt-3">Topic:</h4>
+                    <h4 class="mt-3">Topics - Courses:</h4>
                     @foreach ($data['topics'] as $topic)
                         <li class="list-group-item">
                             <b>{{$topic->name}}</b>@if ($topic->course) - {{$topic->course->name}} @endif
@@ -53,7 +53,7 @@
                     @endforeach
                     @endif
                     @if(!$data['courses']->isEmpty())
-                        <h4 class="mt-3">Course:</h4>
+                        <h4 class="mt-3">Courses:</h4>
                         @foreach ($data['courses'] as $course)
                             <li class="list-group-item">
                                 <b>{{$course->name}}</b>

@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $data['categories'] = Category::all();
         $data['now_category'] = null;
-        $data['my_courses'] = Course::where('users', '=', Auth::user()->id);
+        // $data['my_courses'] = Course::where('users', '=', Auth::user()->id);
         if ($request->category)
         {
             $data['now_category'] = $request->category;
@@ -43,14 +43,5 @@ class HomeController extends Controller
         return view('home')->with('data', $data); 
     }
 
-    public function joinCourse(Request $request)
-    {
-        
-        if(!Auth::user()->courses->contains($request->course))
-        {
-            Auth::user()->courses()->attach($request->course);
-        }
-        return redirect()->route("home");
-        
-    }
+    
 }

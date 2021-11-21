@@ -13,4 +13,5 @@ class AppConst extends Model
     const DEFAULT_ADMIN_TOPIC_PER_PAGE = 5;
     const DEFAULT_ADMIN_CATEGORY_PER_PAGE = 5;
     const DEFAULT_HOME_COURSE_PER_PAGE = 6;
+    const DEFAULT_MY_COURSE_PER_PAGE = 6;
 }
