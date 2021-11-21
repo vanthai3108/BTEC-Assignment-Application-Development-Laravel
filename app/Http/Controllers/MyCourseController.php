@@ -82,7 +82,7 @@ class MyCourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -94,7 +94,7 @@ class MyCourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        abort(404);
     }
 
     /**

@@ -14,6 +14,14 @@ class ProfileSeeder extends Seeder
      */
     public function run()
     {
+        Profile::create(['key' => 'Type', 'value' => 'Internal', 'user_id' => 6]);
+        Profile::create(['key' => 'Education', 'value' => 'BTEC college', 'user_id' => 6]);
+
+        Profile::create(['key' => 'Type', 'value' => 'External', 'user_id' => 7]);
+        Profile::create(['key' => 'Education', 'value' => 'FPT University', 'user_id' => 7]);
+
+        Profile::create(['key' => 'Type', 'value' => 'Internal', 'user_id' => 8]);
+
         Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 9]);
         Profile::create(['key' => 'Toeic', 'value' => '130', 'user_id' => 9]);
 
