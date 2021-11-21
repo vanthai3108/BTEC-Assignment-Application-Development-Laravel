@@ -20,8 +20,8 @@ class CourseSeeder extends Seeder
             'image' => 'storage/courses/course1.jpg', 
             'numberOfSessions' => 30, 
             'shift' => 1, 
-            'startDate' => '2020/12/11', 
-            'endDate' => '2021/02/11',
+            'startDate' => '2021/12/11', 
+            'endDate' => '2022/02/11',
             'category_id' => 1,
         ]);
         $course->users()->attach([9,10,11]);
@@ -31,8 +31,8 @@ class CourseSeeder extends Seeder
             'image' => 'storage/courses/course2.jpg', 
             'numberOfSessions' => 15, 
             'shift' => 2, 
-            'startDate' => '2020/12/25', 
-            'endDate' => '2020/01/25',
+            'startDate' => '2021/12/25', 
+            'endDate' => '2022/01/25',
             'category_id' => 1,
         ]);
         $course->users()->attach([10,11, 13]);
@@ -42,19 +42,19 @@ class CourseSeeder extends Seeder
             'image' => 'storage/courses/course3.jpg', 
             'numberOfSessions' => 15, 
             'shift' => 3, 
-            'startDate' => '2020/12/17', 
-            'endDate' => '2020/3/17',
+            'startDate' => '2021/12/17', 
+            'endDate' => '2022/3/17',
             'category_id' => 2,
         ]);
         $course->users()->attach([9,11, 13]);
         $course = Course::create([
-            'name' => 'Business Intelligence',
-            'description' => 'This is Business intelligence, data course', 
+            'name' => 'Data structure',
+            'description' => 'This is data structure, algorithsm course', 
             'image' => 'storage/courses/course4.png', 
             'numberOfSessions' => 15, 
             'shift' => 3, 
-            'startDate' => '2020/12/18', 
-            'endDate' => '2020/3/18',
+            'startDate' => '2021/12/18', 
+            'endDate' => '2022/3/18',
             'category_id' => 3,
         ]);
         $course->users()->attach([9,12]);
@@ -64,8 +64,8 @@ class CourseSeeder extends Seeder
             'image' => 'storage/courses/course5.png', 
             'numberOfSessions' => 30, 
             'shift' => 3, 
-            'startDate' => '2020/12/10', 
-            'endDate' => '2020/4/10',
+            'startDate' => '2021/12/10', 
+            'endDate' => '2022/4/10',
             'category_id' => 4,
         ]);
         $course->users()->attach([11,12]);
@@ -75,8 +75,8 @@ class CourseSeeder extends Seeder
             'image' => 'storage/courses/course6.jpg', 
             'numberOfSessions' => 30, 
             'shift' => 3, 
-            'startDate' => '2020/12/15', 
-            'endDate' => '2020/4/15',
+            'startDate' => '2021/12/15', 
+            'endDate' => '2022/4/15',
             'category_id' => 5,
         ]);
         $course->users()->attach([9,13]);
@@ -86,8 +86,8 @@ class CourseSeeder extends Seeder
             'image' => 'storage/courses/course7.jpg', 
             'numberOfSessions' => 15, 
             'shift' => 3, 
-            'startDate' => '2020/11/11', 
-            'endDate' => '2020/2/11',
+            'startDate' => '2021/11/11', 
+            'endDate' => '2022/2/11',
             'category_id' => 6,
         ]);
         $course->users()->attach([11]);
@@ -97,8 +97,8 @@ class CourseSeeder extends Seeder
             'image' => 'storage/courses/course8.jpg', 
             'numberOfSessions' => 15, 
             'shift' => 3, 
-            'startDate' => '2020/12/21', 
-            'endDate' => '2020/3/21',
+            'startDate' => '2021/12/21', 
+            'endDate' => '2022/3/21',
             'category_id' => 7,
         ]);
         $course->users()->attach([12]);

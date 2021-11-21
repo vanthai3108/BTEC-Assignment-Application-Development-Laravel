@@ -44,7 +44,7 @@
                             <td class="text-center align-middle">{{ $course->startDate }}</td>
                             <td class="text-center align-middle">{{ $course->endDate }}</td>
                             <td class="align-middle">
-                                @if($course->category != null) 
+                            @if($course->category != null) 
                                 {{$course->category->name}}
                             @else
                                 <span class="text-red">Empty</span>

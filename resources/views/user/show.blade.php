@@ -38,7 +38,7 @@
                     @endif
                     
                     @if(!$data['topics']->isEmpty())
-                        <h4 class="mt-3">Topic:</h4>
+                        <h4 class="mt-3">Topics - Courses:</h4>
                         @foreach ($data['topics'] as $topic)
                             <li class="list-group-item">
                                 <b>{{$topic->name}}</b>@if ($topic->course) - {{$topic->course->name}} @endif
@@ -46,7 +46,7 @@
                         @endforeach
                     @endif
                     @if(!$data['courses']->isEmpty())
-                        <h4 class="mt-3">Course:</h4>
+                        <h4 class="mt-3">Courses:</h4>
                         @foreach ($data['courses'] as $course)
                             <li class="list-group-item">
                                 <b>{{$course->name}}</b>

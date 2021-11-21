@@ -10,7 +10,7 @@
     @yield('title')
 
     {{-- WEB Logo --}}
-    <link rel="shortcut icon" type="image" href="{{config('adminlte.logo_img')}}" />
+    <link rel="shortcut icon" type="image" href="{{ config('app.url') }}/{{ config('adminlte.logo_img') }}" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

@@ -52,14 +52,14 @@
                     <div class="col-4 mb-4">
                         <div class="row">
                             <div class="card col-11 pt-3">
-                                <img class="card-img-top" style="height: 20vmin" src="{{config('app.url')}}/../{{  $course->image }}" alt="Card image cap">
+                                <img class="card-img-top" style="height: 20vmin" src="{{config('app.url')}}/{{  $course->image }}" alt="Card image cap">
                                 <div class="pt-2 text-center">
                                     <h5 class="card-title mb-1">{{ $course->name }}</h5>
                                     <p class="card-text mb-1">{{ $course->description}}</p>
                                     @if ($course->users->contains(Auth::user()->id) || $course->topics->contains('user_id', '=', Auth::user()->id))
-                                        <a href="{{ route("myCourses.index")}}" class="btn btn-primary mb-2 btn-block">View course</a>
+                                        <a href="{{ route("myCourses.show", $course->id)}}" class="btn btn-primary mb-3 btn-block">View course</a>
                                     @else
-                                        <a href="{{ route('myCourses.joinCourse', $course->id) }}" class="btn btn-primary mb-2 btn-block">Join course</a>
+                                        <a href="{{ route('myCourses.joinCourse', $course->id) }}" class="btn btn-primary mb-3 btn-block">Join course</a>
                                     @endif
                                 </div>
                             </div>

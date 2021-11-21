@@ -48,7 +48,7 @@
                     <h4 class="mt-3">Topics - Courses:</h4>
                     @foreach ($data['topics'] as $topic)
                         <li class="list-group-item">
-                            <b>{{$topic->name}}</b>@if ($topic->course) - {{$topic->course->name}} @endif
+                            <b>{{$topic->name}}</b>@if($topic->course) - <a href="{{ route('myCourses.show', $topic->course->id)}}">{{$topic->course->name}}</a> @endif
                         </li>
                     @endforeach
                     @endif
@@ -56,7 +56,7 @@
                         <h4 class="mt-3">Courses:</h4>
                         @foreach ($data['courses'] as $course)
                             <li class="list-group-item">
-                                <b>{{$course->name}}</b>
+                                <b><a href="{{ route('myCourses.show', $course->id)}}">{{ $course->name }}</a></b>
                             </li>
                         @endforeach
                     @endif

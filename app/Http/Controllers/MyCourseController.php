@@ -69,9 +69,13 @@ class MyCourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Course $my_course)
     {
-        //
+        if($my_course->users->contains(Auth::user()->id) || $my_course->topics->contains('user_id', Auth::user()->id))
+        {
+            return view('my-course.show')->with('course', $my_course);
+        }
+        abort(404);
     }
 
     /**
@@ -103,7 +107,7 @@ class MyCourseController extends Controller
      * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Course $my_course)
     {
         //
     }
