@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Course;
+use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
@@ -24,7 +28,11 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $data['total_users'] = User::count();
+        $data['total_courses'] = Course::count();
+        $data['total_topics'] = Topic::count();
+        $data['total_categories'] = Category::count();
+        return view('admin.home')->with('data', $data);
     }
 
     public function setting()

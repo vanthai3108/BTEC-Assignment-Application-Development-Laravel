@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminRoleController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminTopicController;
 use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\MyCourseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 
@@ -24,9 +25,10 @@ Auth::routes(['register' => false]);
 
 Route::group(['prefix' => '', 'middleware' => ['auth', 'block']], function(){
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/join-course', [App\Http\Controllers\HomeController::class, 'joinCourse'])->name('home.joinCourse');
     Route::resource('/profile', ProfileController::class)->names('profiles');
     Route::resource('/user', UserController::class)->names('users');
+    Route::resource('/my-course', MyCourseController::class)->names('myCourses');
+    Route::get('/my-course/join-course/{course}', [App\Http\Controllers\MyCourseController::class, 'joinCourse'])->name('myCourses.joinCourse');
 });
 
 

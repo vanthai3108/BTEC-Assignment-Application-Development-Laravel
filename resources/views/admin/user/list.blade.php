@@ -50,6 +50,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if($usersData['users']->total() == 0)
+                    <tr>
+                        <td colspan="11" class="text-center">No Results</td>
+                    </tr>
+                    @endif
                     @foreach($usersData['users'] as $key=>$user)
                         <tr>
                             <td class="text-center align-middle">{{ ($usersData['users']->currentPage() - 1)  * $usersData['users']->perpage() + $loop->iteration }}</td>

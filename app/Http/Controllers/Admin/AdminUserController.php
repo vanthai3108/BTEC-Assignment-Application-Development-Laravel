@@ -125,13 +125,9 @@ class AdminUserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $checkRole = false;
-        foreach(auth()->user()->roles as $userRole)
+        if(Auth::user()->roles->contains('name', 'Admin'))
         {
-            if($userRole->name == "Admin")
-            {
-                $checkRole = true;
-                break;
-            }
+            $checkRole = true;
         }
         // $request->file('avatar')->store('public/avatars');
         // $filename = $request->file('avatar')->hashName();
@@ -198,13 +194,9 @@ class AdminUserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $checkRole = false;
-        foreach(auth()->user()->roles as $userRole)
+        if(Auth::user()->roles->contains('name', 'Admin'))
         {
-            if($userRole->name == "Admin")
-            {
-                $checkRole = true;
-                break;
-            }
+            $checkRole = true;
         }
         if (!$checkRole)
         {
