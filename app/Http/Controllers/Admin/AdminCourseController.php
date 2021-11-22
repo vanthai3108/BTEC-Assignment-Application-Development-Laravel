@@ -74,7 +74,9 @@ class AdminCourseController extends Controller
      */
     public function edit(Course $course)
     {
-        //
+        $data['course'] = $course;
+        $data['categories'] = Category::all();
+        return view('admin.course.edit')->with('data', $data);
     }
 
     /**
@@ -86,7 +88,15 @@ class AdminCourseController extends Controller
      */
     public function update(UpdateCourseRequest $request, Course $course)
     {
-        //
+        $request->file('image')->store('public/courses');
+        $filename = $request->file('image')->hashName();
+        $course->fill($request->all());
+        if ($request->category_id == 0) {
+            $course->category_id = null;
+        }
+        $course->image = 'storage/courses/'.$filename;
+        $course->save();
+        return redirect()->route('admin.courses.index');
     }
 
     /**
