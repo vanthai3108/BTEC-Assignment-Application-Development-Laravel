@@ -8,7 +8,11 @@
 <div class="container">
     <div class="row">
         <div class="col-12 text-center mb-3">
-            <h1>My Course</h1>
+            @if($courses->isEmpty())
+                <h3>You have not taken any courses yet</h3>
+            @else
+                <h1>My Course</h1>
+            @endif
         </div>
         <div class="col-12">
             <div class="tab-content row">

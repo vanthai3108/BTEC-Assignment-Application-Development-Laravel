@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-<title>BT School | User</title>    
+<title>BT School | {{ $data['user']->username }}</title>    
 @endsection
 
 @section('content')

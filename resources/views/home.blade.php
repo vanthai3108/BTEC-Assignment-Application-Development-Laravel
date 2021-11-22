@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-<title>BT School | Home</title>    
+<title>BT School | Home </title>    
 @endsection
 
 @section('content')
