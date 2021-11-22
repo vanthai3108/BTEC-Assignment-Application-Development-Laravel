@@ -14,7 +14,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Edit course</h3>
                       </div>
-                    <form action="{{route('admin.courses.update')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('admin.courses.update', $data['course']->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="card-body">
@@ -83,9 +83,7 @@
                                     <option value="0">null</option>
                                     @foreach ($data['categories'] as $category)
                                         <option value="{{ $category->id }}"
-                                            @if (old('category_id') == $category->id)
-                                                selected
-                                            @endif
+                                            {{ old('category_id') != null ? (old('category_id') == $category->id ? 'selected' : '') : ($data['course']->category_id == $category->id ? 'selected' : '' )}}
                                         >
                                             {{ $category->name }}
                                         </option>
