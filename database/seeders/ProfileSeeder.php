@@ -14,28 +14,54 @@ class ProfileSeeder extends Seeder
      */
     public function run()
     {
-        Profile::create(['key' => 'Type', 'value' => 'Internal', 'user_id' => 6]);
-        Profile::create(['key' => 'Education', 'value' => 'BTEC college', 'user_id' => 6]);
+        // Profile::create(['key' => 'Type', 'value' => 'Internal', 'user_id' => 6]);
+        // Profile::create(['key' => 'Education', 'value' => 'BTEC college', 'user_id' => 6]);
 
-        Profile::create(['key' => 'Type', 'value' => 'External', 'user_id' => 7]);
-        Profile::create(['key' => 'Education', 'value' => 'FPT University', 'user_id' => 7]);
+        // Profile::create(['key' => 'Type', 'value' => 'External', 'user_id' => 7]);
+        // Profile::create(['key' => 'Education', 'value' => 'FPT University', 'user_id' => 7]);
 
-        Profile::create(['key' => 'Type', 'value' => 'Internal', 'user_id' => 8]);
+        // Profile::create(['key' => 'Type', 'value' => 'Internal', 'user_id' => 8]);
 
-        Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 9]);
-        Profile::create(['key' => 'Toeic', 'value' => '130', 'user_id' => 9]);
+        // Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 9]);
+        // Profile::create(['key' => 'Toeic', 'value' => '130', 'user_id' => 9]);
 
-        Profile::create(['key' => 'Ielts', 'value' => '8.0', 'user_id' => 10]);
-        Profile::create(['key' => 'Toeic', 'value' => '140', 'user_id' => 10]);
+        // Profile::create(['key' => 'Ielts', 'value' => '8.0', 'user_id' => 10]);
+        // Profile::create(['key' => 'Toeic', 'value' => '140', 'user_id' => 10]);
 
-        Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 11]);
-        Profile::create(['key' => 'Toeic', 'value' => '150', 'user_id' => 11]);
-        Profile::create(['key' => 'Position', 'value' => 'Developer', 'user_id' => 11]);
+        // Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 11]);
+        // Profile::create(['key' => 'Toeic', 'value' => '150', 'user_id' => 11]);
+        // Profile::create(['key' => 'Position', 'value' => 'Developer', 'user_id' => 11]);
 
-        Profile::create(['key' => 'Ielts', 'value' => '8.0', 'user_id' => 12]);
-        Profile::create(['key' => 'Position', 'value' => 'Tester', 'user_id' => 12]);
+        // Profile::create(['key' => 'Ielts', 'value' => '8.0', 'user_id' => 12]);
+        // Profile::create(['key' => 'Position', 'value' => 'Tester', 'user_id' => 12]);
 
-        Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 13]);
-        Profile::create(['key' => 'Position', 'value' => 'Tester', 'user_id' => 13]);
+        // Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 13]);
+        // Profile::create(['key' => 'Position', 'value' => 'Tester', 'user_id' => 13]);
+        
+        // heroku
+
+        Profile::create(['key' => 'Type', 'value' => 'Internal', 'user_id' => 55]);
+        Profile::create(['key' => 'Education', 'value' => 'BTEC college', 'user_id' => 55]);
+
+        Profile::create(['key' => 'Type', 'value' => 'External', 'user_id' => 65]);
+        Profile::create(['key' => 'Education', 'value' => 'FPT University', 'user_id' => 65]);
+
+        Profile::create(['key' => 'Type', 'value' => 'Internal', 'user_id' => 75]);
+
+        Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 85]);
+        Profile::create(['key' => 'Toeic', 'value' => '130', 'user_id' => 85]);
+
+        Profile::create(['key' => 'Ielts', 'value' => '8.0', 'user_id' => 95]);
+        Profile::create(['key' => 'Toeic', 'value' => '140', 'user_id' => 95]);
+
+        Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 105]);
+        Profile::create(['key' => 'Toeic', 'value' => '150', 'user_id' => 105]);
+        Profile::create(['key' => 'Position', 'value' => 'Developer', 'user_id' => 105]);
+
+        Profile::create(['key' => 'Ielts', 'value' => '8.0', 'user_id' => 115]);
+        Profile::create(['key' => 'Position', 'value' => 'Tester', 'user_id' => 115]);
+
+        Profile::create(['key' => 'Ielts', 'value' => '9.0', 'user_id' => 125]);
+        Profile::create(['key' => 'Position', 'value' => 'Tester', 'user_id' => 125]);
     }
 }

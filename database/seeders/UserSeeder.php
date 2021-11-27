@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
@@ -16,6 +17,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $roleAdmin = Role::where('name', 'Admin')->first();
+        $roleStaff = Role::where('name', 'Training staff')->first();
+        $roleTrainer = Role::where('name', 'Trainer')->first();
+        $roleTrainee = Role::where('name', 'Trainee')->first();
         // create 2 account admin 
         $user = User::create([
             'username' => 'admin',
@@ -24,7 +29,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'avatar' => 'storage/avatars/avatar1.png'
         ]);
-        $user->roles()->attach(5); 
+        $user->roles()->attach($roleAdmin->id); 
 
 
         $user1 = User::create([
@@ -34,7 +39,7 @@ class UserSeeder extends Seeder
             'email' => 'admin2@gmail.com',
             'avatar' => 'storage/avatars/avatar2.png'
         ]);
-        $user1->roles()->attach(5);
+        $user1->roles()->attach($roleAdmin->id);
 
         //create 3 trainning staff
         for($i=1; $i<4; $i++){
@@ -46,7 +51,7 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.($i+2).'.png',
                 //'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user2->roles()->attach(15);
+            $user2->roles()->attach($roleStaff->id);
         }
 
         //create 3 trainer
@@ -59,7 +64,7 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.$i.'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user3->roles()->attach(25);
+            $user3->roles()->attach($roleTrainer->id);
         }
 
         //create 5 trainee
@@ -72,7 +77,7 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.($i+3).'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user4->roles()->attach(35);
+            $user4->roles()->attach($roleTrainee->id);
         }
     }
 }
