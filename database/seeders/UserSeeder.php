@@ -44,9 +44,9 @@ class UserSeeder extends Seeder
                 'fullname' => 'Training staff '.$i,
                 'email' => 'training'.$i.'@gmail.com',
                 'avatar' => 'storage/avatars/avatar'.($i+2).'.png',
-                // 'avatar' => 'storage/avatars/avatar-default.png'
+                //'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user2->roles()->attach(10);
+            $user2->roles()->attach(15);
         }
 
         //create 3 trainer
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.$i.'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user3->roles()->attach(15);
+            $user3->roles()->attach(25);
         }
 
         //create 5 trainee
@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.($i+3).'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user4->roles()->attach(20);
+            $user4->roles()->attach(35);
         }
     }
 }
