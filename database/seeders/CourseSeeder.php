@@ -99,7 +99,7 @@ class CourseSeeder extends Seeder
             'endDate' => '2022/2/11',
             'category_id' => $cate6->id,
         ]);
-        $course->users()->attach([11]);
+        // $course->users()->attach([11]);
         $course = Course::create([
             'name' => 'Digital Marketing',
             'description' => 'This is Business and Digital Marketing course', 
