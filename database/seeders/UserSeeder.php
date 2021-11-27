@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'avatar' => 'storage/avatars/avatar1.png'
         ]);
-        $user->roles()->attach(1); 
+        $user->roles()->attach(5); 
 
 
         $user1 = User::create([
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             'email' => 'admin2@gmail.com',
             'avatar' => 'storage/avatars/avatar2.png'
         ]);
-        $user1->roles()->attach(1);
+        $user1->roles()->attach(5);
 
         //create 3 trainning staff
         for($i=1; $i<4; $i++){
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.($i+2).'.png',
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user2->roles()->attach(2);
+            $user2->roles()->attach(10);
         }
 
         //create 3 trainer
@@ -59,7 +59,7 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.$i.'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user3->roles()->attach(3);
+            $user3->roles()->attach(15);
         }
 
         //create 5 trainee
@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.($i+3).'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user4->roles()->attach(4);
+            $user4->roles()->attach(20);
         }
     }
 }
