@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         // create 2 account admin 
-        User::create([
+        $user = User::create([
             'username' => 'admin',
             'password' => Hash::make('adminadmin'),
             'fullname' => 'Admin 1',
@@ -24,9 +24,7 @@ class UserSeeder extends Seeder
             'avatar' => 'storage/avatars/avatar1.png'
         ]);
 
-        User::find(1)->each(function ($user)  { 
-            $user->roles()->attach(1); 
-        });
+        $user->roles()->attach(1); 
 
 
         $user1 = User::create([
