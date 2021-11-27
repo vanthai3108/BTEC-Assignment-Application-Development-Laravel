@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin2@gmail.com',
                 'avatar' => 'storage/avatars/avatar2.png'
             ]);
-            $user1->roles()->attach(1);
+            $user1->roles()->associate(1);
         }
         for($i=1; $i<2; $i++){
             $user = User::create([
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'avatar' => 'storage/avatars/avatar1.png'
             ]);
-            $user->roles()->attach(1);
+            $user->roles()->associate(1);
         }
 
 
