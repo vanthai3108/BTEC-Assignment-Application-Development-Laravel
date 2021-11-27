@@ -50,7 +50,7 @@ class AdminCourseController extends Controller
         if ($request->category_id == 0) {
             $course->category_id = null;
         }
-        $course->image = 'public/courses'.$filename;
+        $course->image = 'storage/courses/'.$filename;
         $course->save();
         return redirect()->route('admin.courses.index');
     }
