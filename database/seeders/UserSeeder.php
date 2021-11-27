@@ -16,27 +16,27 @@ class UserSeeder extends Seeder
     public function run()
     {
         // create 2 account admin 
-        for($i=1; $i<2; $i++){
-            $user1 = User::create([
-                'username' => 'admin2',
-                'password' => Hash::make('adminadmin'),
-                'fullname' => 'Admin 2',
-                'email' => 'admin2@gmail.com',
-                'avatar' => 'storage/avatars/avatar2.png'
-            ]);
-            $user1->roles()->attach(1);
-        }
-        for($i=1; $i<2; $i++){
-            $user = User::create([
-                'username' => 'admin',
-                'password' => Hash::make('adminadmin'),
-                'fullname' => 'Admin 1',
-                'email' => 'admin@gmail.com',
-                'avatar' => 'storage/avatars/avatar1.png'
-            ]);
-            $user->roles()->attach(1);
-        }
+        $user = User::create([
+            'username' => 'admin',
+            'password' => Hash::make('adminadmin'),
+            'fullname' => 'Admin 1',
+            'email' => 'admin@gmail.com',
+            'avatar' => 'storage/avatars/avatar1.png'
+        ]);
 
+        User::find(1)->each(function ($user)  { 
+            $user->roles()->attach(1); 
+        });
+
+
+        $user1 = User::create([
+            'username' => 'admin2',
+            'password' => Hash::make('adminadmin'),
+            'fullname' => 'Admin 2',
+            'email' => 'admin2@gmail.com',
+            'avatar' => 'storage/avatars/avatar2.png'
+        ]);
+        $user1->roles()->attach(1);
 
         //create 3 trainning staff
         for($i=1; $i<4; $i++){
