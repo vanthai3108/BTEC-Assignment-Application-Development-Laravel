@@ -17,18 +17,14 @@ class UserSeeder extends Seeder
     public function run()
     {
         // create 2 account admin 
-        User::create([
+        $user=User::create([
             'username' => 'admin',
             'password' => Hash::make('adminadmin'),
             'fullname' => 'Admin 1',
             'email' => 'admin@gmail.com',
-            //'avatar' => 'storage/avatars/avatar1.png'
+            'avatar' => 'storage/avatars/avatar1.png'
         ]);
-        DB::table('role_user')->insert([
-            'user_id' => 1,
-            'role_id' => 1,
-        ]);
-        // $user->roles()->attach(1); 
+        $user->roles()->attach(1); 
 
 
         User::create([
