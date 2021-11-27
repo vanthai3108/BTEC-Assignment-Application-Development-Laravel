@@ -68,7 +68,7 @@
                                     @if(Auth::user()->avatar)
                                     <img src="{{ config('app.url')}}/{{ Auth::user()->avatar }}" class="avatar rounded-circle img-thumbnail" style="height: 40px; width:40px"  alt="User Image">
                                     @else
-                                    {{ Auth::user()->username }}
+                                    {{ Auth::user()->id }}
                                     @endif
                                 </a>
 
