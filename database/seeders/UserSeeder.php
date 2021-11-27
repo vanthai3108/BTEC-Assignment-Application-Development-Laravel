@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         // create 2 account admin 
-        $user = User::create([
+        User::create([
             'username' => 'admin',
             'password' => Hash::make('adminadmin'),
             'fullname' => 'Admin 1',
