@@ -26,18 +26,18 @@ class UserSeeder extends Seeder
         $user->roles()->attach(1);
 
         // create 1 account admin
-        $user = User::create([
+        $user1 = User::create([
             'username' => 'admin2',
             'password' => Hash::make('adminadmin'),
             'fullname' => 'Admin 2',
             'email' => 'admin2@gmail.com',
             'avatar' => 'storage/avatars/avatar2.png'
         ]);
-        $user->roles()->attach([1]);
+        $user1->roles()->attach(1);
 
         //create 3 trainning staff
         for($i=1; $i<4; $i++){
-            $user = User::create([
+            $user2 = User::create([
                 'username' => 'training'.$i,
                 'password' => Hash::make('adminadmin'),
                 'fullname' => 'Training staff '.$i,
@@ -45,12 +45,12 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.($i+2).'.png',
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user->roles()->attach(2);
+            $user2->roles()->attach(2);
         }
 
         //create 3 trainer
         for($i=1; $i<4; $i++){
-            $user = User::create([
+            $user3 = User::create([
                 'username' => 'trainer'.$i,
                 'password' => Hash::make('adminadmin'),
                 'fullname' => 'Trainer '.$i,
@@ -58,12 +58,12 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.$i.'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user->roles()->attach(3);
+            $user3->roles()->attach(3);
         }
 
         //create 5 trainee
         for($i=1; $i<6; $i++){
-            $user = User::create([
+            $user4 = User::create([
                 'username' => 'trainee'.$i,
                 'password' => Hash::make('adminadmin'),
                 'fullname' => 'Trainee '.$i,
@@ -71,7 +71,7 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.($i+3).'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user->roles()->attach(4);
+            $user4->roles()->attach(4);
         }
     }
 }
