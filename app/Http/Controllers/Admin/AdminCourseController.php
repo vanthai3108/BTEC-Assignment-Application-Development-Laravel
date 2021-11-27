@@ -43,14 +43,14 @@ class AdminCourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        $request->file('image')->store('storage/courses');
+        $request->file('image')->store('public/courses');
         $filename = $request->file('image')->hashName();
         $course = new Course();
         $course->fill($request->all());
         if ($request->category_id == 0) {
             $course->category_id = null;
         }
-        $course->image = 'storage/courses/'.$filename;
+        $course->image = 'public/courses'.$filename;
         $course->save();
         return redirect()->route('admin.courses.index');
     }
