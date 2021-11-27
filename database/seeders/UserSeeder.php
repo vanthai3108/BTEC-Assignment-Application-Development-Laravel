@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'avatar' => 'storage/avatars/avatar1.png'
         ]);
-        $user->roles()->attach([1, 2]);
+        $user->roles()->attach(1);
 
         // create 1 account admin
         $user = User::create([
