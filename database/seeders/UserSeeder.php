@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('adminadmin'),
             'fullname' => 'Admin 1',
             'email' => 'admin@gmail.com',
-            'avatar' => 'storage/avatars/avatar1.png'
+            //'avatar' => 'storage/avatars/avatar1.png'
         ]);
         DB::table('role_user')->insert([
             'user_id' => 1,
