@@ -59,8 +59,9 @@
                                     @if ($course->users->contains(Auth::user()->id) || $course->topics->contains('user_id', '=', Auth::user()->id))
                                         <a href="{{ route("myCourses.show", $course->id)}}" class="btn btn-primary mb-3 btn-block">View course</a>
                                     @else
-                                        <a href="{{ route('myCourses.joinCourse', $course->id) }}" class="btn btn-primary mb-3 btn-block">Join course</a>
-                                    @endif
+                                        {{-- <a href="{{ route('myCourses.joinCourse', $course->id) }}" class="btn btn-primary mb-3 btn-block">Join course</a> --}}
+                                        <a class="btn btn-outline-secondary mb-3 btn-block">You haven't joined</a>
+                                        @endif
                                 </div>
                             </div>
                         </div>
