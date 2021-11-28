@@ -12,7 +12,6 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active" style="height:42vmin">
@@ -23,9 +22,6 @@
                 </div>
                 <div class="carousel-item" style="height:42vmin">
                     <img class="d-block w-100" style="height:42vmin" src="https://www.sergilehkyi.com/wp-content/uploads/2018/05/machine-learning-in-fin-services-potential-applications.jpg" alt="Third slide">
-                </div>
-                <div class="carousel-item" style="height:42vmin">
-                    <img class="d-block w-100" style="height:42vmin" src="https://highskyit.com/wp-content/uploads/2019/05/cloud_banner_image.jpg" alt="Fourth slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -60,7 +56,7 @@
                                         <a href="{{ route("myCourses.show", $course->id)}}" class="btn btn-primary mb-3 btn-block">View course</a>
                                     @else
                                         {{-- <a href="{{ route('myCourses.joinCourse', $course->id) }}" class="btn btn-primary mb-3 btn-block">Join course</a> --}}
-                                        <a class="btn btn-outline-secondary mb-3 btn-block">You haven't joined</a>
+                                        <a class="btn btn-outline-secondary mb-3 btn-block">You have not joined yet</a>
                                         @endif
                                 </div>
                             </div>
