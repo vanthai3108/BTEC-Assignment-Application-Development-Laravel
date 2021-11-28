@@ -107,7 +107,9 @@ class AdminCourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->users()->detach();
+        $course->delete();
+        return redirect()->route('admin.courses.index');
     }
 
     public function deleteTrainee(Course $course, $user)
