@@ -56,7 +56,7 @@
                                         <a href="{{ route("myCourses.show", $course->id)}}" class="btn btn-primary mb-3 btn-block">View course</a>
                                     @else
                                         {{-- <a href="{{ route('myCourses.joinCourse', $course->id) }}" class="btn btn-primary mb-3 btn-block">Join course</a> --}}
-                                        <a class="btn btn-outline-secondary mb-3 btn-block">You have not joined yet</a>
+                                        <a class="btn btn-secondary mb-3 btn-block disabled">Course not available</a>
                                         @endif
                                 </div>
                             </div>
