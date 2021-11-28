@@ -24,7 +24,7 @@
                                 <div class="pt-2 text-center">
                                     <h5 class="card-title mb-1">{{ $course->name }}</h5>
                                     <p class="card-text mb-1">{{ $course->description}}</p>
-                                    <a href="{{ route("myCourses.show", $course->id)}}" class="btn btn-primary mb-3 btn-block">View course</a>
+                                    <a href="{{ route("myCourses.show", $course->id)}}" class="btn btn-primary mb-3 btn-block">View</a>
                                 </div>
                             </div>
                         </div>
