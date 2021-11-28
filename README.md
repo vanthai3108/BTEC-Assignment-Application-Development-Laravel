@@ -45,7 +45,6 @@ place, telephone, and email address.
 3. A trainer’s role
  - In the same system, the trainer who have been registered by the
 administrator can login and can update his profile such as Trainer
-
 name, External or Internal Type, education, working place,
 telephone, and email address.
  - Can view courses which have a topic he is assigned to.
