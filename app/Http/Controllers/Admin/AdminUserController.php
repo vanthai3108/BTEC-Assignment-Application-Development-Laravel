@@ -33,29 +33,14 @@ class AdminUserController extends Controller
             }
         }
         $data['key'] = null;
-        $data['type'] = null;
         if($check){
-            if($request->key && $request->type)
+            if($request->key)
             {
                 $data['key'] = $request->key;
-                $data['type'] = $request->type;
-                if($data['type'] == "username" ||$data['type'] == "fullname" ||$data['type'] == "email")
-                {
-                    $data['users'] = User::where('id', '!=', auth()->user()->id)
-                                ->where($data['type'], 'LIKE', "%{$data['key']}%")
+                $data['users'] = User::where('id', '!=', auth()->user()->id)
+                                ->where('keyword', 'LIKE', "%{$data['key']}%")
                                 ->with('roles')
                                 ->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
-                }
-                else
-                {
-                    $data['users'] = User::where('id', '!=', auth()->user()->id)
-                                ->whereHas('profiles', function($q) use($data) {
-                                    $q->where('key', 'LIKE', "%{$data['type']}%")
-                                    ->where('value', 'LIKE', "%{$data['key']}%");
-                                })->with('roles')
-                                ->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
-                }
-
             }
             else {
                 $data['users'] = User::where('id', '!=', auth()->user()->id)
@@ -65,33 +50,16 @@ class AdminUserController extends Controller
             
         }
         else {
-            if($request->key && $request->type)
+            if($request->key)
             {
                 $data['key'] = $request->key;
-                $data['type'] = $request->type;
-                if($data['type'] == "username" ||$data['type'] == "fullname" ||$data['type'] == "email")
-                {
-                    $data['users'] = User::where('id', '!=', auth()->user()->id)
+                $data['users'] = User::where('id', '!=', auth()->user()->id)
                                 ->whereHas('roles', function($q) {
                                     $q->whereIn('name', ['Trainer','Trainee']);
                                 })
-                                ->where($data['type'], 'LIKE', "%{$data['key']}%")
+                                ->where('keyword', 'LIKE', "%{$data['key']}%")
                                 ->with('roles')
                                 ->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
-                }
-                else
-                {
-                    $data['users'] = User::where('id', '!=', auth()->user()->id)
-                                ->whereHas('roles', function($q) {
-                                    $q->whereIn('name', ['Trainer','Trainee']);
-                                })
-                                ->whereHas('profiles', function($q) use($data) {
-                                    $q->where('key', 'LIKE', "%{$data['type']}%")
-                                    ->where('value', 'LIKE', "%{$data['key']}%");
-                                })->with('roles')
-                                ->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
-                }
-
             }
             else {
                 $data['users'] = User::where('id', '!=', auth()->user()->id)
@@ -100,7 +68,6 @@ class AdminUserController extends Controller
                                     })->with('roles')->paginate(AppConst::DEFAULT_ADMIN_USER_PER_PAGE);
             }
         }
-        $data['options'] = Profile::distinct()->get(['key']);
         $data['roles'] = Role::all();
         return view('admin.user.list')->with('usersData', $data);
     }

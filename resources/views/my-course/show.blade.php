@@ -22,8 +22,7 @@
                     @if($course->category != null) 
                         <h5>Category: <span>{{ $course->category->name }}</span></h5>
                     @endif
-                    <h5>Start date: {{ $course->startDate }}</h5>
-                    <h5>End date: {{ $course->endDate }}</h5>
+                    <h5>Time: From {{  date('d-m-Y', strtotime($course->startDate)) }} to {{  date('d-m-Y', strtotime($course->endDate)) }}</h5>
                     <h5>Number of session: {{ $course->numberOfSessions }}</h5>
                     <h5>Shift: {{ $course->shift }}</h5>
                     <hr>

@@ -17,15 +17,6 @@
                             value="{{$usersData['key']}}"
                         @endif
                 >
-                <select class="form-control mr-sm-2" name="type">
-                    <option value="username" @if ("username" == $usersData['type']) selected @endif>Username</option>
-                    <option value="fullname" @if ("fullname" == $usersData['type']) selected @endif>Full name</option>
-                    <option value="email" @if ("email" == $usersData['type']) selected @endif>Email</option>
-                    @foreach ($usersData['options'] as $option)
-                        <option value="{{$option->key}}" @if ($option->key == $usersData['type']) selected @endif>{{$option->key}}</option>
-                    @endforeach
-                    
-                </select>
                 <button class="btn btn-success " type="submit">Search</button>
             </form>
         </div>
@@ -111,7 +102,7 @@
         <!-- /.card-body -->
         <div class="card-footer clearfix">
             <ul class="pagination pagination-sm m-0 justify-content-center">
-                {{$usersData['users']->links('vendor.pagination.custom')}}
+                {{$usersData['users']->links('vendor.pagination.custom-user', ['key' => $usersData['key']])}}
             </ul>
         </div>
     </div>
