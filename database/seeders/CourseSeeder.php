@@ -23,6 +23,99 @@ class CourseSeeder extends Seeder
         $cate6 = Category::where('name', 'Interior design')->first();
         $cate7 = Category::where('name', 'Business Administration')->first();
 
+        // $course = Course::create([
+        //     'name' => 'Web Development',
+        //     'description' => 'This is Web design and development course', 
+        //     'image' => 'storage/courses/course1.jpg', 
+        //     'numberOfSessions' => 30, 
+        //     'shift' => 1, 
+        //     'startDate' => '2021/12/11', 
+        //     'endDate' => '2022/02/11',
+        //     'category_id' => $cate1->id,
+        // ]);
+        // $course->users()->attach([9,10,11]);
+        // $course = Course::create([
+        //     'name' => 'Application Development',
+        //     'description' => 'This is Application development course', 
+        //     'image' => 'storage/courses/course2.jpg', 
+        //     'numberOfSessions' => 15, 
+        //     'shift' => 2, 
+        //     'startDate' => '2021/12/25', 
+        //     'endDate' => '2022/01/25',
+        //     'category_id' => $cate1->id,
+        // ]);
+        // $course->users()->attach([10,11,12]);
+
+        // $course = Course::create([
+        //     'name' => 'Business Intelligence',
+        //     'description' => 'This is Business intelligence, AI course', 
+        //     'image' => 'storage/courses/course3.jpg', 
+        //     'numberOfSessions' => 15, 
+        //     'shift' => 3, 
+        //     'startDate' => '2021/12/17', 
+        //     'endDate' => '2022/3/17',
+        //     'category_id' => $cate2->id,
+        // ]);
+        // $course->users()->attach([9, 11]);
+        // $course = Course::create([
+        //     'name' => 'Data structure',
+        //     'description' => 'This is data structure, algorithsm course', 
+        //     'image' => 'storage/courses/course4.png', 
+        //     'numberOfSessions' => 15, 
+        //     'shift' => 3, 
+        //     'startDate' => '2021/12/18', 
+        //     'endDate' => '2022/3/18',
+        //     'category_id' => $cate3->id,
+        // ]);
+        // $course->users()->attach([9,12]);
+        // $course = Course::create([
+        //     'name' => 'Embedded System',
+        //     'description' => 'This is embedded system and automation course', 
+        //     'image' => 'storage/courses/course5.png', 
+        //     'numberOfSessions' => 30, 
+        //     'shift' => 3, 
+        //     'startDate' => '2021/12/10', 
+        //     'endDate' => '2022/4/10',
+        //     'category_id' => $cate4->id,
+        // ]);
+        // $course->users()->attach([11,12]);
+        // $course = Course::create([
+        //     'name' => 'Digital Animation',
+        //     'description' => 'This is graphic design, digital animation course', 
+        //     'image' => 'storage/courses/course6.jpg', 
+        //     'numberOfSessions' => 30, 
+        //     'shift' => 3, 
+        //     'startDate' => '2021/12/15', 
+        //     'endDate' => '2022/4/15',
+        //     'category_id' => $cate5->id,
+        // ]);
+        // $course->users()->attach([9,12]);
+        // $course = Course::create([
+        //     'name' => 'Architectural Engineering',
+        //     'description' => 'This is Architectural Engineering course', 
+        //     'image' => 'storage/courses/course7.jpg', 
+        //     'numberOfSessions' => 15, 
+        //     'shift' => 3, 
+        //     'startDate' => '2021/11/11', 
+        //     'endDate' => '2022/2/11',
+        //     'category_id' => $cate6->id,
+        // ]);
+        // $course->users()->attach([11]);
+        // $course = Course::create([
+        //     'name' => 'Digital Marketing',
+        //     'description' => 'This is Business and Digital Marketing course', 
+        //     'image' => 'storage/courses/course8.jpg', 
+        //     'numberOfSessions' => 15, 
+        //     'shift' => 3, 
+        //     'startDate' => '2021/12/21', 
+        //     'endDate' => '2022/3/21',
+        //     'category_id' => $cate7->id,
+        // ]);
+        // $course->users()->attach([12]);
+
+
+
+        // heroku
         $course = Course::create([
             'name' => 'Web Development',
             'description' => 'This is Web design and development course', 
@@ -33,7 +126,7 @@ class CourseSeeder extends Seeder
             'endDate' => '2022/02/11',
             'category_id' => $cate1->id,
         ]);
-        // $course->users()->attach([9,10,11]);
+        $course->users()->attach([85,95,105]);
         $course = Course::create([
             'name' => 'Application Development',
             'description' => 'This is Application development course', 
@@ -44,7 +137,8 @@ class CourseSeeder extends Seeder
             'endDate' => '2022/01/25',
             'category_id' => $cate1->id,
         ]);
-        // $course->users()->attach([10,11, 13]);
+        $course->users()->attach([95,105, 125]);
+
         $course = Course::create([
             'name' => 'Business Intelligence',
             'description' => 'This is Business intelligence, AI course', 
@@ -55,7 +149,7 @@ class CourseSeeder extends Seeder
             'endDate' => '2022/3/17',
             'category_id' => $cate2->id,
         ]);
-        // $course->users()->attach([9,11, 13]);
+        $course->users()->attach([85, 105]);
         $course = Course::create([
             'name' => 'Data structure',
             'description' => 'This is data structure, algorithsm course', 
@@ -66,7 +160,7 @@ class CourseSeeder extends Seeder
             'endDate' => '2022/3/18',
             'category_id' => $cate3->id,
         ]);
-        // $course->users()->attach([9,12]);
+        $course->users()->attach([85,115]);
         $course = Course::create([
             'name' => 'Embedded System',
             'description' => 'This is embedded system and automation course', 
@@ -77,7 +171,7 @@ class CourseSeeder extends Seeder
             'endDate' => '2022/4/10',
             'category_id' => $cate4->id,
         ]);
-        // $course->users()->attach([11,12]);
+        $course->users()->attach([105,115]);
         $course = Course::create([
             'name' => 'Digital Animation',
             'description' => 'This is graphic design, digital animation course', 
@@ -88,7 +182,7 @@ class CourseSeeder extends Seeder
             'endDate' => '2022/4/15',
             'category_id' => $cate5->id,
         ]);
-        // $course->users()->attach([9,13]);
+        $course->users()->attach([85,115]);
         $course = Course::create([
             'name' => 'Architectural Engineering',
             'description' => 'This is Architectural Engineering course', 
@@ -99,7 +193,7 @@ class CourseSeeder extends Seeder
             'endDate' => '2022/2/11',
             'category_id' => $cate6->id,
         ]);
-        // $course->users()->attach([11]);
+        $course->users()->attach([105]);
         $course = Course::create([
             'name' => 'Digital Marketing',
             'description' => 'This is Business and Digital Marketing course', 
@@ -110,7 +204,7 @@ class CourseSeeder extends Seeder
             'endDate' => '2022/3/21',
             'category_id' => $cate7->id,
         ]);
-        // $course->users()->attach([12]);
+        $course->users()->attach([115]);
         
     }
 }

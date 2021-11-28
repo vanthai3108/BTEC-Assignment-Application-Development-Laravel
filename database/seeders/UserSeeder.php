@@ -29,21 +29,25 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'avatar' => 'storage/avatars/avatar1.png'
         ]);
+        $user->keyword = $user->username . ", " . $user->fullname . ", " . $user->email . ", ";
+        $user->save();
         $user->roles()->attach($roleAdmin->id); 
 
 
-        $user1 = User::create([
+        $user = User::create([
             'username' => 'admin2',
             'password' => Hash::make('adminadmin'),
             'fullname' => 'Admin 2',
             'email' => 'admin2@gmail.com',
             'avatar' => 'storage/avatars/avatar2.png'
         ]);
-        $user1->roles()->attach($roleAdmin->id);
+        $user->keyword = $user->username . ", " . $user->fullname . ", " . $user->email . ", ";
+        $user->save();
+        $user->roles()->attach($roleAdmin->id);
 
         //create 3 trainning staff
         for($i=1; $i<4; $i++){
-            $user2 = User::create([
+            $user = User::create([
                 'username' => 'training'.$i,
                 'password' => Hash::make('adminadmin'),
                 'fullname' => 'Training staff '.$i,
@@ -51,12 +55,14 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.($i+2).'.png',
                 //'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user2->roles()->attach($roleStaff->id);
+            $user->keyword = $user->username . ", " . $user->fullname . ", " . $user->email . ", ";
+            $user->save();
+            $user->roles()->attach($roleStaff->id);
         }
 
         //create 3 trainer
         for($i=1; $i<4; $i++){
-            $user3 = User::create([
+            $user = User::create([
                 'username' => 'trainer'.$i,
                 'password' => Hash::make('adminadmin'),
                 'fullname' => 'Trainer '.$i,
@@ -64,12 +70,14 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.$i.'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user3->roles()->attach($roleTrainer->id);
+            $user->keyword = $user->username . ", " . $user->fullname . ", " . $user->email . ", ";
+            $user->save();
+            $user->roles()->attach($roleTrainer->id);
         }
 
         //create 5 trainee
         for($i=1; $i<6; $i++){
-            $user4 = User::create([
+            $user = User::create([
                 'username' => 'trainee'.$i,
                 'password' => Hash::make('adminadmin'),
                 'fullname' => 'Trainee '.$i,
@@ -77,7 +85,9 @@ class UserSeeder extends Seeder
                 'avatar' => 'storage/avatars/avatar'.($i+3).'.jpg'
                 // 'avatar' => 'storage/avatars/avatar-default.png'
             ]);
-            $user4->roles()->attach($roleTrainee->id);
+            $user->keyword = $user->username . ", " . $user->fullname . ", " . $user->email . ", ";
+            $user->save();
+            $user->roles()->attach($roleTrainee->id);
         }
     }
 }

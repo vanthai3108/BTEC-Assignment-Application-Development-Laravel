@@ -49,8 +49,3 @@ name, External or Internal Type, education, working place,
 telephone, and email address.
  - Can view courses which have a topic he is assigned to.
 
-Your manager suggests that this would be a great opportunity for you to
-demonstrate your capabilities by designing and developing the application. After
-considering, you decide to do the project. The project consists of 4 steps which is
-divided into two phases. In this first phase, you have to carry on requirement
-analysis and produce solution design for the problem.
