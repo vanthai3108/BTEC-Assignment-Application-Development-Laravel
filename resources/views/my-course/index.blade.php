@@ -14,6 +14,7 @@
                 <h1>My Course</h1>
             @endif
         </div>
+        @if(!$courses->isEmpty())
         <div class="col-12">
             <div class="tab-content row">
                 <table class="table table-bordered table-hover col-12" style="background-color: white">
@@ -63,6 +64,7 @@
                 </ul>
             </div>
         </div>
+        @endif
         
       </div>
 </div>
