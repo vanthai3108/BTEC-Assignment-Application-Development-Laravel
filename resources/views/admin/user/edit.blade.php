@@ -38,7 +38,7 @@
                                     </div>
                                 @endif
                             </div>
-                            {{-- <div class="form-group">
+                            <div class="form-group">
                                 <label for="fullname">Full name:</label>
                                 <input type="text" class="form-control {{ $errors->has('fullname') ? 'is-invalid' : '' }}" 
                                     id="fullname" name="fullname" value="{{ old('fullname') != null ? old('fullname') : $data['user']->fullname }}" placeholder="Fullname">
@@ -58,7 +58,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="customFile">Choose avatar:</label>
                                 <div class="input-group {{ $errors->has('avatar') ? 'is-invalid' : '' }}">
                                     <div class="custom-file">
