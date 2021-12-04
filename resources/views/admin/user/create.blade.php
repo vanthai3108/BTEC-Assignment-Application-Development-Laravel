@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Password:</label>
-                                <input type="text" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" 
+                                <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" 
                                     id="password" name="password" value="{{ old('password') }}" placeholder="Password">
                                 @if ($errors->has('password'))
                                     <div class="invalid-feedback">
